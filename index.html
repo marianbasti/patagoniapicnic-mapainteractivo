@@ -30,7 +30,7 @@
                 touch-action: none;
             }
             #gui-container {
-                position: fixed;
+                position: absolute;
                 display: flex;
                 width: 80vw;
                 top: 10vh;
@@ -260,7 +260,7 @@
             var GUIImageLoad = new Image();
             GUIImageLoad.src = "./images/"+item+".jpg"
             if (GUIImageLoad) {
-              GUIImage.src = GUIImageLoad
+              GUIImage.src = GUIImageLoad.src
             }
           }
           let id = null;
