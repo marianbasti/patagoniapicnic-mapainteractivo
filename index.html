@@ -51,6 +51,7 @@
             }
             #gui-body {
                 display: flex;
+                flex-direction: column;
                 width: 95%;
                 height: 90%;
                 padding-top: 5%;
@@ -256,9 +257,9 @@
           } else {
             console.log(item);
             GUIText.textContent = data[item];
-            GUITitle.textContent = selected;
+            GUITitle.textContent = item;
             var GUIImageLoad = new Image();
-            GUIImageLoad.src = "./images/"+item.replace(' ','')+".jpg"
+            GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
             if (GUIImageLoad) {
               GUIImage.src = GUIImageLoad.src
             }
