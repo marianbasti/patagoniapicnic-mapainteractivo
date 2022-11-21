@@ -62,7 +62,10 @@
                 width: 100px;
                 border: none;
                 font-size: 15px;
-                color: white
+                color: white;
+                position: fixed;
+                right: 0px;
+                top: 0px;
             }
             #gui-text {
                 font-size: 3vh;
@@ -210,12 +213,15 @@
         GUIText.setAttribute("class","gui-text");
         GUIText.style.textAlign = "left";
         GUIText.textContent = "En este mapa interactivo podrás explorar Patagonia Picnic. Muevete con un dedo, haz zoom con dos y presiona los distintos lugares para mas información";
+        var GUIImage = document.createElement("img");
+        GUIImage.setAttribute("id","gui-image")
 
         document.body.prepend(GUIContainer);
         GUIContainer.appendChild(GUIHeader);
+        GUIContainer.appendChild(GUIClose);
         GUIHeader.appendChild(GUITitle);
-        GUIHeader.appendChild(GUIClose);
         GUIContainer.appendChild(GUIBody);
+        GUIBody.appendChild(GUIImage);
         GUIBody.appendChild(GUIText);
         
         // Show and hide GUI
