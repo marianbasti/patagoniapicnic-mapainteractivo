@@ -217,53 +217,14 @@
         GUIHeader.appendChild(GUIClose);
         GUIContainer.appendChild(GUIBody);
         GUIBody.appendChild(GUIText);
-        //var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-        /*
-        var GUI = await advancedTexture.parseFromURLAsync('guiTexture.json', function(){GUI.animation.push(fadeGUI);});
-        var closeButton = advancedTexture.getControlByName('Button');
-
-
-        // GUI Animation
-        const fadeGUI1 = new BABYLON.Animation('fadeGUI', 'alpha', 100, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
-        const fadeGUI2 = new BABYLON.Animation('fadeGUI', 'alpha', 100, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
-        const openGUI = new BABYLON.Animation('openGUI', 'height', 100, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT)
-        var keyframes = [];
-        keyframes=[{frame:0,value:0},{frame:30,value:0.7}];
-        fadeGUI1.setKeys(keyframes);
-        keyframes=[{frame:0,value:0},{frame:30,value:1}];
-        fadeGUI2.setKeys(keyframes);
-        keyframes=[{frame:0,value:0},{frame:60,value:1.6}];
-        openGUI.setKeys(keyframes);
-        let guiElements = advancedTexture.getDescendants();
-        guiElements.forEach((element) => {
-            if (element.name=='logo'){} else if (element.name=='GUIDescripciones'){
-              element.animations = [];
-              element.animations.push(openGUI);
-            } else {
-              keyframes=[{frame:0,value:0},{frame:30,value:1}];
-              element.animations = [];
-              element.animations.push(fadeGUI2);
-            }
-        });
-        */
-        // Hide GUI function
-        /*let hideGUI = function() {
-          let guiElements = advancedTexture.getDescendants();
-          guiElements.forEach((element) => {
-              if (element.name=='logo'){} else{
-                setTimeout(async() => {
-                  element.isVisible = false;
-                })
-              }
-          });
-        }*/
+        
         // Show and hide GUI
         const qmark = document.getElementById("qmark");
         qmark.addEventListener("click", () => {
           GUITitle.textContent = "Que?"
           GUIText.textContent = "Un mapita virtual, que mas queres?"
           GUIText.style.textAlign = "left";
-          showGUI()
+          showGUI("help")
         })
         GUIClose.addEventListener("click", () => {
           let id = null;
@@ -281,10 +242,16 @@
           }
         })
         let showGUI = function(item) {
-          document.body.prepend(GUIContainer)
-          GUITitle.textContent = selected;
-          item = item.replace(' ','')
-          GUIText.textContent = data[item];
+          document.body.prepend(GUIContainer);
+          if (item=='help') {
+            GUIText.textContent = "Un mapita, que loco. Clickea por ahi y fijate que pasa.";
+            GUITitle.textContent = "QUESESTO?";
+          } else {
+            console.log(item);
+            item = item.replace(' ','')
+            GUIText.textContent = data[item];
+            GUITitle.textContent = selected;
+          }
           let id = null;
           clearInterval(id);
           id = setInterval(frame, 5);
@@ -297,14 +264,6 @@
               GUIContainer.style.opacity=opacity;
             }
           }
-          /*
-          let guiElements = advancedTexture.getDescendants();
-          guiElements.forEach((element) => {
-              if (element.name=='logo'){} else{
-                element.isVisible = true;
-                scene.beginAnimation(element,0,30,true);
-              }
-          });*/
         }
         // Camera animation
         const cameraRefocus = new BABYLON.Animation('cameraRefocus', 'target', 30, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
@@ -313,15 +272,7 @@
         cameraRefocus.setEasingFunction(easingFunction);
         camera.animations.push(cameraRefocus);
 
-        // Logo HUD
-        var image = new BABYLON.GUI.Image("logo", "patagoniapicnic.png");
-        image.width = "10%";
-        image.height = "6%";
-        image.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-        image.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-        //advancedTexture.addControl(image);
-
-        // Clicking
+        // Clicking on objects and GUI response
         scene.onPointerObservable.add((pointerInfo) => {
           switch (pointerInfo.type) {
             case BABYLON.PointerEventTypes.POINTERDOWN:
@@ -330,7 +281,6 @@
             case BABYLON.PointerEventTypes.POINTERUP:
               newCamPos = [camera.position.x,camera.position.y,camera.position.z];
               if(Math.abs(length(camPos)-length(newCamPos)) < .005) {
-                // Camera refocusing animation and GUI activation
                 var pickResult = scene.pick(scene.pointerX, scene.pointerY);
                 if (pickResult.hit){
                   /*/ Set new camera target
@@ -338,17 +288,16 @@
                   keyframes=[{frame:0,value:camera.target},{frame:10,value:vector}];
                   cameraRefocus.setKeys(keyframes);
                   scene.beginAnimation(camera,0,40,true);*/
-                  // GUI
                   selected = pickResult.pickedMesh.name.split('_')[0].split('.')[0];
                   if(selected != 'Piso' && selected != 'autos' && selected != 'arboles' && selected != 'Cerco') {
                     showGUI(selected);
                   }
-                  //advancedTexture.getControlByName('tituloText').text = selected;
                 }
               };
               break;
           }
         });
+
         // Camera proportional pan speed
         scene.beforeRender = () => {
             let ratio = .5;
@@ -360,14 +309,6 @@
                 camera.wheelPrecision *= ratio;
             }
         };
-    /*
-        // Closing GUI
-        closeButton.onPointerUpObservable.add(function() {
-          hideGUI();
-        });
-*/
-
-
 
         //scene.debugLayer.show();
         return scene;
