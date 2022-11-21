@@ -63,7 +63,7 @@
                 border: none;
                 font-size: 15px;
                 color: white;
-                position: fixed;
+                position: absolute;
                 right: 0px;
                 top: 0px;
             }
@@ -257,6 +257,11 @@
             item = item.replace(' ','')
             GUIText.textContent = data[item];
             GUITitle.textContent = selected;
+            var GUIImageLoad = new Image();
+            GUIImageLoad.src = "./images/"+item+".jpg"
+            if (GUIImageLoad) {
+              GUIImage.src = GUIImageLoad
+            }
           }
           let id = null;
           clearInterval(id);
