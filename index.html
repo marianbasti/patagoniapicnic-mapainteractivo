@@ -38,7 +38,6 @@
                 padding-left: 5%;
                 margin: 0 auto;
                 background-color: rgba(0, 200, 120, 0.7);
-                flex-direction: column;
                 justify-content: center;
                 z-index: 999;
             }
@@ -260,7 +259,6 @@
             GUITitle.textContent = item;
             var GUIImageLoad = new Image();
             GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
-            GUIImage.style.visibility = visible;
             GUIImage.src = GUIImageLoad.src;
           }
           let id = null;
