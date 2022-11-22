@@ -1,361 +1,356 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" href="loader.css" type="text/css"/>
-        <title>La Rural - Layout</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link rel="stylesheet" href="loader.css" type="text/css"/>
+      <title>La Rural - Layout</title>
 
-        <!-- Babylon.js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
-        <script src="https://preview.babylonjs.com/earcut.min.js"></script>
-        <script src="https://cdn.babylonjs.com/babylon.js"></script>
-        <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
-        <script src="https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
-        <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
-        <script src="https://cdn.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
-        <script src="./data.js"></script>
-        <style>
-            html, body {
-                overflow: hidden;
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-            }
-            #renderCanvas {
-                width: 100vw;
-                height: 100vh;
-                touch-action: none;
-            }
-            #gui-container {
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                width: 80vw;
-                top: 10vh;
-                height: 75vh;
-                padding-left: 5%;
-                margin: 0 auto;
-                background-color: rgba(0, 200, 120, 0.7);
-                justify-content: center;
-                z-index: 999;
-            }
-            #gui-header {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                height: 5%;
-                justify-content: center;
-            }
-            #gui-body {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                width: 95%;
-                height: 90%;
-                padding-top: 5%;
-                justify-content: flex-start;
-                overflow-y: scroll;
-            }
-            #gui-close {
-                background-color: red;
-                width: 100px;
-                height: 100px;
-                border: none;
-                font-size: 15px;
-                color: white;
-                position: absolute;
-                right: 0px;
-                top: 0px;
-            }
-            #gui-text {
-                font-size: 3vh;
-                color: white;
-                width: 100%;
-            }
-            #gui-title {
-              font-size: 4vh;
-              color: white;
-            }
-            #logo {
-              display: flex;
-              align-self: flex-start;
-              position: fixed;
-            }
-            #qmark {
-              position: fixed;
-              right: 3vw;
-              bottom: 3vw;
-              width: 50px;
-            }
-            .gui-text {
-              font: 15px Arial, sans-serif;
-            }
-            #gui-image {
+      <!-- Babylon.js -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+      <script src="https://preview.babylonjs.com/earcut.min.js"></script>
+      <script src="https://cdn.babylonjs.com/babylon.js"></script>
+      <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+      <script src="https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+      <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+      <script src="https://cdn.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+      <script src="./data.js"></script>
+      <style>
+          html, body {
+              overflow: hidden;
               width: 100%;
-            }
-        </style>
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              justify-content: center;
+          }
+          #renderCanvas {
+              width: 100vw;
+              height: 100vh;
+              touch-action: none;
+          }
+          #gui-container {
+              position: absolute;
+              display: flex;
+              flex-direction: column;
+              width: 80vw;
+              top: 10vh;
+              height: 75vh;
+              padding-left: 5%;
+              margin: 0 auto;
+              background-color: rgba(0, 200, 120, 0.7);
+              justify-content: center;
+              z-index: 999;
+          }
+          #gui-header {
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              height: 5%;
+              justify-content: center;
+          }
+          #gui-body {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              width: 95%;
+              height: 90%;
+              padding-top: 5%;
+              justify-content: flex-start;
+              overflow-y: scroll;
+          }
+          #gui-close {
+              background-color: red;
+              width: 100px;
+              height: 100px;
+              border: none;
+              font-size: 15px;
+              color: white;
+              position: absolute;
+              right: 0px;
+              top: 0px;
+          }
+          #gui-text {
+              font-size: 3vh;
+              color: white;
+              width: 100%;
+          }
+          #gui-title {
+            font-size: 4vh;
+            color: white;
+          }
+          #logo {
+            display: flex;
+            align-self: flex-start;
+            position: fixed;
+          }
+          #qmark {
+            position: fixed;
+            right: 3vw;
+            bottom: 3vw;
+            width: 50px;
+          }
+          .gui-text {
+            font: 15px Arial, sans-serif;
+          }
+          #gui-image {
+            width: 100%;
+          }
+      </style>
     </head>
 <body>
-    <a id="logo" href="https://patagoniapicnic.com.ar"><img src="./patagoniapicnic.png" alt="Patagonia Picnic logo"></a>
-    <img id="qmark" src="./qmark.png" alt="Question mark logo">
-    <canvas id="renderCanvas"></canvas>
-    <script>
-      //Length function
-      function length(a) {return Math.sqrt(Math.pow(a[0],2)+Math.pow(a[1],2)+Math.pow(a[2],2));}
-        var clicks = 0;
+  <a id="logo" href="https://patagoniapicnic.com.ar"><img src="./patagoniapicnic.png" alt="Patagonia Picnic logo"></a>
+  <img id="qmark" src="./qmark.png" alt="Question mark logo">
+  <canvas id="renderCanvas"></canvas>
+  <script>
+    //Length function
+    function length(a) {return Math.sqrt(Math.pow(a[0],2)+Math.pow(a[1],2)+Math.pow(a[2],2));}
+    var clicks = 0;
 
-      //Preloader
-      BABYLON.DefaultLoadingScreen.prototype.displayLoadingUI = function () {
+    //Preloader
+    BABYLON.DefaultLoadingScreen.prototype.displayLoadingUI = function () {
+      var customLoadingScreenDiv = document.createElement('div');
+      customLoadingScreenDiv.classList.add('ring');
+      customLoadingScreenDiv.id = 'customLoadingScreenDiv';
+      document.getElementsByTagName('head')[0].appendChild(customLoadingScreenDiv);
+      this._resizeLoadingUI();
+      window.addEventListener("resize", this._resizeLoadingUI);
+      document.body.appendChild(customLoadingScreenDiv);
+    };
+    BABYLON.DefaultLoadingScreen.prototype.hideLoadingUI = function(){
+      document.getElementById("customLoadingScreenDiv").style.display = "none";
+      console.log("scene is now loaded");
+      engine.resize();
+    }
 
-        var customLoadingScreenDiv = document.createElement('div');
-        customLoadingScreenDiv.classList.add('ring');
-        customLoadingScreenDiv.id = 'customLoadingScreenDiv';
-        document.getElementsByTagName('head')[0].appendChild(customLoadingScreenDiv);
-        this._resizeLoadingUI();
-        window.addEventListener("resize", this._resizeLoadingUI);
-        document.body.appendChild(customLoadingScreenDiv);
-      };
-      BABYLON.DefaultLoadingScreen.prototype.hideLoadingUI = function(){
-        document.getElementById("customLoadingScreenDiv").style.display = "none";
-        console.log("scene is now loaded");
-        engine.resize();
-      }
+    var canvas = document.getElementById("renderCanvas");
 
-      var canvas = document.getElementById("renderCanvas");
-
-      var startRenderLoop = function (engine, canvas) {
-          engine.runRenderLoop(function () {
-              if (sceneToRender && sceneToRender.activeCamera) {
-                  sceneToRender.render();
-
-              }
-          });
-      }
-
-      var engine = null;
-      var scene = null;
-      var sceneToRender = null;
-
-      //Creating the scene
-      var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
-      var createScene = async function () {
-        engine.displayLoadingUI();
-        var scene = new BABYLON.Scene(engine);
-        scene.pointerMovePredicate = () => false;
-    	  var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
-        // This positions the camera
-        camera.setPosition(new BABYLON.Vector3(0, 5, 5));
-        prevRadius = camera.radius;
-        camera.angularSensibility = 10;
-        camera.moveSensibility = 93;
-        camera.wheelPrecision = 10;
-        camera.pinchDeltaPercentage = 0.003;
-        camera.upperBetaLimit = Math.PI/2;
-        camera.lowerRadiusLimit = .5;
-        camera.upperRadiusLimit = 10;
-        camera.minZ = 0.1;
-        camera.inertia = 0.05;
-        camera.panningInertia = 0.5;
-        camera.panningSensibility = 200;
-        camera.inertialRadiusOffsetSearch  = 0.1;
-        camera.pinchToPanMaxDistance = 0;
-        camera.mapPanning = true;
-        camera.useNaturalPinchZoom = true
-        const touch = camera.inputs.attached.pointers;
-        touch.multiTouchPanning = true;
-        touch.multiTouchPanAndZoom = false;
-        // This attaches the camera to the canvas
-        camera.attachControl(canvas, true, false, 0);
-
-    	/**************************************************************/
-
-        // Light
-        var sun = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -0.8, -0.2), scene);
-        sun.intensity = 4;
-        scene.clearColor = new BABYLON.Color3(0.1,0.8,0.7);
-        var ambient = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(.1, .1, .1), scene);
-        ambient.intensity = .1;
-        //Skybox
-        /*skyboxMaterial.backFaceCulling = false;
-        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
-        skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-        skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
-        skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-        skybox.material = skyboxMaterial;*/
-
-      	// Shapes
-      	var escena = await BABYLON.SceneLoader.ImportMeshAsync("", "./", "layout.glb", scene);
-        escena.isPickable = true;
-        await escena.meshes.forEach((mesh) => {
-          mesh.freezeWorldMatrix();
-          mesh.doNotSyncBoundingInfo = true;
-          mesh.cullingStrategy = BABYLON.AbstractMesh.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY;
-          if(mesh.material){mesh.material.freeze()};
-          engine.hideLoadingUI()
-        })
-
-        // GUI
-        var GUIContainer = document.createElement("div");
-        GUIContainer.setAttribute("id","gui-container");
-        GUIContainer.textContent = "";
-        var GUIHeader = document.createElement("div");
-        GUIHeader.setAttribute("id","gui-header");
-        var GUITitle = document.createElement("a");
-        GUITitle.setAttribute("id","gui-title");
-        GUITitle.setAttribute("class","gui-text");
-        GUITitle.style.textAlign = "left";
-        GUITitle.style.width = "90%";
-        GUITitle.textContent = "Bienvenidx";
-        var GUIClose = document.createElement("button");
-        GUIClose.setAttribute("id","gui-close");
-        GUIClose.textContent = "X";
-        var GUIBody = document.createElement("div");
-        GUIBody.setAttribute("id","gui-body");
-        var GUIText = document.createElement("a");
-        GUIText.setAttribute("id","gui-text");
-        GUIText.setAttribute("class","gui-text");
-        GUIText.style.textAlign = "left";
-        GUIText.textContent = "En este mapa interactivo podrás explorar Patagonia Picnic. Muevete con un dedo, haz zoom con dos y presiona los distintos lugares para mas información";
-        var GUIImage = document.createElement("img");
-        GUIImage.setAttribute("id","gui-image")
-
-        document.body.prepend(GUIContainer);
-        GUIContainer.appendChild(GUIHeader);
-        GUIContainer.appendChild(GUIClose);
-        GUIHeader.appendChild(GUITitle);
-        GUIContainer.appendChild(GUIBody);
-        GUIBody.appendChild(GUIImage);
-        GUIBody.appendChild(GUIText);
-        
-        // Show and hide GUI
-        const qmark = document.getElementById("qmark");
-        qmark.addEventListener("click", () => {
-          GUITitle.textContent = "Que?"
-          GUIText.textContent = "Un mapita virtual, que mas queres?"
-          GUIText.style.textAlign = "left";
-          showGUI("help")
-        })
-        GUIClose.addEventListener("click", () => {
-          let id = null;
-          clearInterval(id);
-          id = setInterval(frame, 5);
-          let opacity = 1;
-          function frame() {
-            if (opacity < 0) {
-              clearInterval(id);
-              GUIContainer.remove();
-            } else {
-              opacity-=0.1;
-              GUIContainer.style.opacity=opacity;
-            }
-          }
-        })
-        let showGUI = function(item) {
-          document.body.prepend(GUIContainer);
-          if (item=='help') {
-            GUIText.textContent = "Un mapita, que loco. Clickea por ahi y fijate que pasa.";
-            GUITitle.textContent = "QUESESTO?";
-            GUIImage.remove();
-          } else {
-            console.log(item);
-            GUIText.textContent = data[item];
-            GUITitle.textContent = item;
-            var GUIImageLoad = new Image();
-            try {
-              GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
-              GUIImage.src = GUIImageLoad.src;
-              GUIBody.prepend(GUIImage);
-            } catch (error) {
-              console.log("Image ./images/"+item.replaceAll(' ','')+".jpg does not exist");
-            }
-          }
-          let id = null;
-          clearInterval(id);
-          id = setInterval(frame, 5);
-          let opacity = 0;
-          function frame() {
-            if (opacity > 1) {
-              clearInterval(id);
-            } else {
-              opacity+=0.1;
-              GUIContainer.style.opacity=opacity;
-            }
-          }
+    var startRenderLoop = function (engine, canvas) {
+      engine.runRenderLoop(function () {
+        if (sceneToRender && sceneToRender.activeCamera) {
+          sceneToRender.render();
         }
-        // Camera animation
-        const cameraRefocus = new BABYLON.Animation('cameraRefocus', 'target', 30, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
-        var easingFunction = new BABYLON.SineEase();
-        easingFunction.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
-        cameraRefocus.setEasingFunction(easingFunction);
-        camera.animations.push(cameraRefocus);
-
-        // Clicking on objects and GUI response
-        scene.onPointerObservable.add((pointerInfo) => {
-          switch (pointerInfo.type) {
-            case BABYLON.PointerEventTypes.POINTERDOWN:
-              camPos = [camera.position.x,camera.position.y,camera.position.z];
-              break;
-            case BABYLON.PointerEventTypes.POINTERUP:
-              newCamPos = [camera.position.x,camera.position.y,camera.position.z];
-              if(Math.abs(length(camPos)-length(newCamPos)) < .005) {
-                var pickResult = scene.pick(scene.pointerX, scene.pointerY);
-                if (pickResult.hit){
-                  /*/ Set new camera target
-                  vector = pickResult.pickedPoint;
-                  keyframes=[{frame:0,value:camera.target},{frame:10,value:vector}];
-                  cameraRefocus.setKeys(keyframes);
-                  scene.beginAnimation(camera,0,40,true);*/
-                  selected = pickResult.pickedMesh.name.split('_')[0].split('.')[0];
-                  if(selected != 'Piso' && selected != 'autos' && selected != 'arboles' && selected != 'Cerco') {
-                    showGUI(selected);
-                  }
-                }
-              };
-              break;
-          }
-        });
-
-        // Camera proportional pan speed
-        scene.beforeRender = () => {
-            let ratio = .5;
-            if (prevRadius != camera.radius) {
-                ratio = prevRadius / camera.radius;
-                prevRadius = camera.radius;
-
-                camera.panningSensibility *= ratio;
-                camera.wheelPrecision *= ratio;
-            }
-        };
-
-        //scene.debugLayer.show();
-        return scene;
-
-      };
-
-      window.initFunction = async function() {
-        var asyncEngineCreation = async function() {
-            try {
-            return createDefaultEngine();
-            } catch(e) {
-            console.log("the available createEngine function failed. Creating the default engine instead");
-            return createDefaultEngine();
-            }
-        }
-
-        window.engine = await asyncEngineCreation();
-        if (!engine) throw 'engine should not be null.';
-        startRenderLoop(engine, canvas);
-        window.scene = await createScene();
-      };
-
-      initFunction().then(() => {sceneToRender = scene});
-      // Resize
-      window.addEventListener("resize", function () {
-          engine.resize();
       });
-    </script>
+    }
+
+    var engine = null;
+    var scene = null;
+    var sceneToRender = null;
+
+    //Creating the scene
+    var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
+    var createScene = async function () {
+      engine.displayLoadingUI();
+      var scene = new BABYLON.Scene(engine);
+      scene.pointerMovePredicate = () => false;
+      var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
+      // This positions the camera
+      camera.setPosition(new BABYLON.Vector3(0, 5, 5));
+      prevRadius = camera.radius;
+      camera.angularSensibility = 10;
+      camera.moveSensibility = 93;
+      camera.wheelPrecision = 10;
+      camera.pinchDeltaPercentage = 0.003;
+      camera.upperBetaLimit = Math.PI/2;
+      camera.lowerRadiusLimit = .5;
+      camera.upperRadiusLimit = 10;
+      camera.minZ = 0.1;
+      camera.inertia = 0.05;
+      camera.panningInertia = 0.5;
+      camera.panningSensibility = 200;
+      camera.inertialRadiusOffsetSearch  = 0.1;
+      camera.pinchToPanMaxDistance = 0;
+      camera.mapPanning = true;
+      camera.useNaturalPinchZoom = true
+      const touch = camera.inputs.attached.pointers;
+      touch.multiTouchPanning = true;
+      touch.multiTouchPanAndZoom = false;
+      // This attaches the camera to the canvas
+      camera.attachControl(canvas, true, false, 0);
+
+    /**************************************************************/
+
+      // Light
+      var sun = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -0.8, -0.2), scene);
+      sun.intensity = 4;
+      scene.clearColor = new BABYLON.Color3(0.1,0.8,0.7);
+      var ambient = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(.1, .1, .1), scene);
+      ambient.intensity = .1;
+      //Skybox
+      /*skyboxMaterial.backFaceCulling = false;
+      skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
+      skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+      skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+      skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+      skybox.material = skyboxMaterial;*/
+
+      // Shapes
+      var escena = await BABYLON.SceneLoader.ImportMeshAsync("", "./", "layout.glb", scene);
+      escena.isPickable = true;
+      await escena.meshes.forEach((mesh) => {
+        mesh.freezeWorldMatrix();
+        mesh.doNotSyncBoundingInfo = true;
+        mesh.cullingStrategy = BABYLON.AbstractMesh.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY;
+        if(mesh.material){mesh.material.freeze()};
+        engine.hideLoadingUI()
+      })
+
+      // GUI
+      var GUIContainer = document.createElement("div");
+      GUIContainer.setAttribute("id","gui-container");
+      GUIContainer.textContent = "";
+      var GUIHeader = document.createElement("div");
+      GUIHeader.setAttribute("id","gui-header");
+      var GUITitle = document.createElement("a");
+      GUITitle.setAttribute("id","gui-title");
+      GUITitle.setAttribute("class","gui-text");
+      GUITitle.style.textAlign = "left";
+      GUITitle.style.width = "90%";
+      GUITitle.textContent = "Bienvenidx";
+      var GUIClose = document.createElement("button");
+      GUIClose.setAttribute("id","gui-close");
+      GUIClose.textContent = "X";
+      var GUIBody = document.createElement("div");
+      GUIBody.setAttribute("id","gui-body");
+      var GUIText = document.createElement("a");
+      GUIText.setAttribute("id","gui-text");
+      GUIText.setAttribute("class","gui-text");
+      GUIText.style.textAlign = "left";
+      GUIText.textContent = "En este mapa interactivo podrás explorar Patagonia Picnic. Muevete con un dedo, haz zoom con dos y presiona los distintos lugares para mas información";
+      var GUIImage = document.createElement("img");
+      GUIImage.setAttribute("id","gui-image")
+
+      document.body.prepend(GUIContainer);
+      GUIContainer.appendChild(GUIHeader);
+      GUIContainer.appendChild(GUIClose);
+      GUIHeader.appendChild(GUITitle);
+      GUIContainer.appendChild(GUIBody);
+      GUIBody.appendChild(GUIImage);
+      GUIBody.appendChild(GUIText);
+      
+      // Show and hide GUI
+      const qmark = document.getElementById("qmark");
+      qmark.addEventListener("click", () => {
+        GUITitle.textContent = "Que?"
+        GUIText.textContent = "Un mapita virtual, que mas queres?"
+        GUIText.style.textAlign = "left";
+        showGUI("help")
+      })
+      GUIClose.addEventListener("click", () => {
+        let id = null;
+        clearInterval(id);
+        id = setInterval(frame, 5);
+        let opacity = 1;
+        function frame() {
+          if (opacity < 0) {
+            clearInterval(id);
+            GUIContainer.remove();
+          } else {
+            opacity-=0.1;
+            GUIContainer.style.opacity=opacity;
+          }
+        }
+      })
+      let showGUI = function(item) {
+        document.body.prepend(GUIContainer);
+        if (item=='help') {
+          GUIText.textContent = "Un mapita, que loco. Clickea por ahi y fijate que pasa.";
+          GUITitle.textContent = "QUESESTO?";
+          GUIImage.remove();
+        } else {
+          console.log(item);
+          GUIText.textContent = data[item];
+          GUITitle.textContent = item;
+          var GUIImageLoad = new Image();
+          GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
+          GUIImage.src = GUIImageLoad.src;
+          GUIBody.prepend(GUIImage);
+        }
+        let id = null;
+        clearInterval(id);
+        id = setInterval(frame, 5);
+        let opacity = 0;
+        function frame() {
+          if (opacity > 1) {
+            clearInterval(id);
+          } else {
+            opacity+=0.1;
+            GUIContainer.style.opacity=opacity;
+          }
+        }
+      }
+      // Camera animation
+      const cameraRefocus = new BABYLON.Animation('cameraRefocus', 'target', 30, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+      var easingFunction = new BABYLON.SineEase();
+      easingFunction.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
+      cameraRefocus.setEasingFunction(easingFunction);
+      camera.animations.push(cameraRefocus);
+
+      // Clicking on objects and GUI response
+      scene.onPointerObservable.add((pointerInfo) => {
+        switch (pointerInfo.type) {
+          case BABYLON.PointerEventTypes.POINTERDOWN:
+            camPos = [camera.position.x,camera.position.y,camera.position.z];
+            break;
+          case BABYLON.PointerEventTypes.POINTERUP:
+            newCamPos = [camera.position.x,camera.position.y,camera.position.z];
+            if(Math.abs(length(camPos)-length(newCamPos)) < .005) {
+              var pickResult = scene.pick(scene.pointerX, scene.pointerY);
+              if (pickResult.hit){
+                /*/ Set new camera target
+                vector = pickResult.pickedPoint;
+                keyframes=[{frame:0,value:camera.target},{frame:10,value:vector}];
+                cameraRefocus.setKeys(keyframes);
+                scene.beginAnimation(camera,0,40,true);*/
+                selected = pickResult.pickedMesh.name.split('_')[0].split('.')[0];
+                if(selected != 'Piso' && selected != 'autos' && selected != 'arboles' && selected != 'Cerco') {
+                  showGUI(selected);
+                }
+              }
+            };
+            break;
+        }
+      });
+
+      // Camera proportional pan speed
+      scene.beforeRender = () => {
+          let ratio = .5;
+          if (prevRadius != camera.radius) {
+              ratio = prevRadius / camera.radius;
+              prevRadius = camera.radius;
+
+              camera.panningSensibility *= ratio;
+              camera.wheelPrecision *= ratio;
+          }
+      };
+
+      //scene.debugLayer.show();
+      return scene;
+
+    };
+
+    window.initFunction = async function() {
+      var asyncEngineCreation = async function() {
+          try {
+          return createDefaultEngine();
+          } catch(e) {
+          console.log("the available createEngine function failed. Creating the default engine instead");
+          return createDefaultEngine();
+          }
+      }
+
+      window.engine = await asyncEngineCreation();
+      if (!engine) throw 'engine should not be null.';
+      startRenderLoop(engine, canvas);
+      window.scene = await createScene();
+    };
+
+    initFunction().then(() => {sceneToRender = scene});
+    // Resize
+    window.addEventListener("resize", function () {
+        engine.resize();
+    });
+  </script>
 </body>
 </html>
