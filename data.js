@@ -13,5 +13,6 @@ var data = {
     "Puesto de primeros auxilios": "Por si te zarpas en sustancia",
     "Patio Kids": "Para que los trajiste?",
     "Puesto Glitter": "Brishito",
-    "Contenedores": "Basura va aqui"
+    "Contenedores": "Basura va aqui",
+    "Baños": "Porque no da mear por ahi"
 }

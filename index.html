@@ -94,7 +94,7 @@
               font: 15px Arial, sans-serif;
             }
             #gui-image {
-              width: fit-content;
+              width: 100%;
             }
         </style>
     </head>
@@ -264,9 +264,13 @@
             GUIText.textContent = data[item];
             GUITitle.textContent = item;
             var GUIImageLoad = new Image();
-            GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
-            GUIImage.src = GUIImageLoad.src;
-            GUIBody.prepend(GUIImage);
+            try {
+              GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
+              GUIImage.src = GUIImageLoad.src;
+              GUIBody.prepend(GUIImage);
+            } catch (error) {
+              console.log("Image ./images/"+item.replaceAll(' ','')+".jpg does not exist");
+            }
           }
           let id = null;
           clearInterval(id);
