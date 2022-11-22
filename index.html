@@ -32,6 +32,7 @@
             #gui-container {
                 position: absolute;
                 display: flex;
+                flex-direction: column;
                 width: 80vw;
                 top: 10vh;
                 height: 75vh;
@@ -254,7 +255,7 @@
           if (item=='help') {
             GUIText.textContent = "Un mapita, que loco. Clickea por ahi y fijate que pasa.";
             GUITitle.textContent = "QUESESTO?";
-            GUIImage.style.visibility = "hidden";
+            GUIImage.remove();
           } else {
             console.log(item);
             GUIText.textContent = data[item];
@@ -262,7 +263,7 @@
             var GUIImageLoad = new Image();
             GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
             GUIImage.src = GUIImageLoad.src;
-            GUIImage.style.visibility = "visible";
+            GUIBody.prepend(GUIImage);
           }
           let id = null;
           clearInterval(id);
