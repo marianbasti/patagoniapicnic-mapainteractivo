@@ -1,5 +1,5 @@
 var data = {
-    "Escenario Principal": "Este es el lugar donde va a sonar la musica ue te encanta. Sonido de alta calidad y visuales enormes para explotar tus sentidos",
+    "Escenario Principal": "Este es el lugar donde va a sonar la musica que te encanta. Sonido de alta calidad y visuales enormes para explotar tus sentidos",
     "Barra": "Tragos y agua criminalmente cara",
     "Puesto Crypto": "Sentite un lobo de Wall Street perdiendo todos tus ahorros",
     "FoodTrucks": "Comida pa tu gula",
