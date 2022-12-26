@@ -222,23 +222,23 @@
       GUIText.setAttribute("id","gui-text");
       GUIText.setAttribute("class","gui-text");
       GUIText.style.textAlign = "left";
-      GUIText.textContent = "En este mapa interactivo podrás explorar Patagonia Picnic. Muevete con un dedo, haz zoom con dos y presiona los distintos lugares para mas información";
-      var GUIImage = document.createElement("img");
-      GUIImage.setAttribute("id","gui-image")
+      GUIText.textContent = "En este mapa interactivo podrás explorar el predio de Patagonia Picnic. Muevete con un dedo, haz zoom con dos y presiona los distintos lugares para mas información";
+      // var GUIImage = document.createElement("img");
+      // GUIImage.setAttribute("id","gui-image")
 
       document.body.prepend(GUIContainer);
       GUIContainer.appendChild(GUIHeader);
       GUIContainer.appendChild(GUIClose);
       GUIHeader.appendChild(GUITitle);
       GUIContainer.appendChild(GUIBody);
-      GUIBody.appendChild(GUIImage);
+      //GUIBody.appendChild(GUIImage);
       GUIBody.appendChild(GUIText);
       
       // Show and hide GUI
       const qmark = document.getElementById("qmark");
       qmark.addEventListener("click", () => {
-        GUITitle.textContent = "Que?"
-        GUIText.textContent = "Un mapita virtual, que mas queres?"
+        GUITitle.textContent = "Bienvenido a Patagonia Picnic!"
+        GUIText.textContent = "En este mapa interactivo podrás explorar el predio de Patagonia Picnic. Muevete con un dedo, haz zoom con dos y presiona los distintos lugares para mas información"
         GUIText.style.textAlign = "left";
         showGUI("help")
       })
@@ -260,17 +260,17 @@
       let showGUI = function(item) {
         document.body.prepend(GUIContainer);
         if (item=='help') {
-          GUIText.textContent = "Un mapita, que loco. Clickea por ahi y fijate que pasa.";
-          GUITitle.textContent = "QUESESTO?";
-          GUIImage.remove();
+          GUIText.textContent = "En este mapa interactivo podrás explorar el predio de Patagonia Picnic. Muevete con un dedo, haz zoom con dos y presiona los distintos lugares para mas información";
+          GUITitle.textContent = "Bienvenido a Patagonia Picnic!";
+          //GUIImage.remove();
         } else {
           console.log(item);
           GUIText.textContent = data[item];
           GUITitle.textContent = item;
-          var GUIImageLoad = new Image();
-          GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
-          GUIImage.src = GUIImageLoad.src;
-          GUIBody.prepend(GUIImage);
+          //var GUIImageLoad = new Image();
+          //GUIImageLoad.src = "./images/"+item.replaceAll(' ','')+".jpg"
+          //GUIImage.src = GUIImageLoad.src;
+          //GUIBody.prepend(GUIImage);
         }
         let id = null;
         clearInterval(id);
